@@ -10,7 +10,7 @@ class ShuffleController extends Controller
         //indexのhtmlを表示
         return $this->render([
             //必要な引数を渡す
-            'index'
+            // 'index'
         ]);
     }
 

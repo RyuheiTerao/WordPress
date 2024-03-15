@@ -23,3 +23,20 @@ services:
       - ./docker/db/mysql_data:/var/lib/mysql
     env_file:
       - ./docker/db/db-variables.env
+
+  WordPress:
+    image: wordpress:latest
+    container_name: wordpress
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 10090:80
+    environment:
+      WORDPRESS_DB_HOST: db:3306 # データベースサーバ名：ポート番号
+      WORDPRESS_DB_USER: test_user # WordPress用データベース接続ユーザ名(dbの内容に合わせる)
+      WORDPRESS_DB_PASSWORD: pass # WordPress用データベース接続パスワード(dbの内容に合わせる)
+      WORDPRESS_DB_NAME: test_database # WordPress用データベース名(dbの内容に合わせる)
+      WORDPRESS_DEBUG: 1 # デバッグモードON
+    volumes:
+      - ./src/html:/var/www/html

@@ -14,7 +14,7 @@ class View
         extract($variables);
 
         ob_start();
-        require $this->$baseDir . '/' . $path . '.php';
+        require $this->baseDir . '/' . $path . '.php';
         $content = ob_get_clean();
 
         ob_start();
